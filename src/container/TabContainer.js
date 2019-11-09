@@ -7,6 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { Card, CardMedia } from '@material-ui/core';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,7 +45,24 @@ const useStyles = makeStyles(theme => ({
     minWidth: '100%',
     maxWidth: '100%'
   },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  card: {
+    maxWidth: 1000,
+    height: 400,
+    margin: 'auto'
+  },
+  media: {
+    width:'300px',
+    height: '200px',
+    paddingTop: '56.25%', // 16:9
+  }
 }));
+
+
 
 
 const TabContainer = () => {
@@ -71,18 +89,24 @@ const TabContainer = () => {
             variant="fullWidth"
             aria-label="full width tabs example"
           >
-            <Tab label="Item One" {...a11yProps(0)} />
-            <Tab label="Item Two" {...a11yProps(1)} />
-            <Tab label="Item Three" {...a11yProps(2)} />
+            <Tab label="MOVIES" {...a11yProps(0)} />
+            <Tab label="SEARCH RESULTS" {...a11yProps(1)} />
+            <Tab label="TV SHOWS" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={value}
-          onChangeIndex={handleChangeIndex}
-        >
+            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+            index={value}
+            onChangeIndex={handleChangeIndex}
+          >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            Item One
+            <Card className={classes.card}>
+            <CardMedia
+            className={classes.media}
+            image=""
+            title="dy"
+            />
+            </Card>
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
             Item Two
