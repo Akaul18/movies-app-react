@@ -7,7 +7,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { Card, CardMedia } from '@material-ui/core';
+import MoviesContainer from './MoviesContainer';
+import SearchContainer from './SearchContainer';
+import TvShowContainer from './TvShowContainer';
+import SelectSearchMovies from '../components/SelectSearchMovies';
+import SelectSearchTv from '../components/SelectSearchTv';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,29 +47,22 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     minWidth: '100%',
-    maxWidth: '100%'
+    maxWidth: '100%',
+    border: '1px solid black'
   },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
     transform: 'scale(0.8)',
-  },
-  card: {
-    maxWidth: 1000,
-    height: 400,
-    margin: 'auto'
-  },
-  media: {
-    width:'300px',
-    height: '200px',
-    paddingTop: '56.25%', // 16:9
   }
 }));
 
 
 
 
-const TabContainer = () => {
+const TabContainer = (props) => {
+  const { moviesDropdown, tvDropdown } = props
+  // console.log(props.moviesDropdown);
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
@@ -100,19 +97,15 @@ const TabContainer = () => {
             onChangeIndex={handleChangeIndex}
           >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <Card className={classes.card}>
-            <CardMedia
-            className={classes.media}
-            image=""
-            title="dy"
-            />
-            </Card>
+            <SelectSearchMovies moviesDropdown ={moviesDropdown} />
+            <MoviesContainer />
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            Item Two
+            <SearchContainer />
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            Item Three
+            <SelectSearchTv tvDropdown ={tvDropdown} />
+            <TvShowContainer />
           </TabPanel>
         </SwipeableViews>
       </div>

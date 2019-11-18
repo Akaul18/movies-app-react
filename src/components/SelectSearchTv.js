@@ -11,8 +11,8 @@ const getStyles = makeStyles(theme => ({
     })
 )
 
-const SelectSearch = (props) => {
-    // const { xyz } = props;
+const SelectSearchTv = (props) => {
+    // const { moviesDropdown, tvDropdown } = props;
     // console.log(props);
     const classes = getStyles();
     const [age, setAge] = React.useState('');
@@ -28,11 +28,11 @@ const SelectSearch = (props) => {
     };
 
     return (
-        <div>
+        <div style={{textAlign:'center'}}>
 
         <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
-            Search Type
+            Category
             </InputLabel>
             <Select
             labelId="demo-simple-select-outlined-label"
@@ -41,11 +41,18 @@ const SelectSearch = (props) => {
             onChange={handleChange}
             labelWidth={labelWidth}
             >
-            {props.selectSearchOptions.map((options)=><MenuItem value={options.option} key={options.id}>{options.option}</MenuItem>)}
+            {/* {(()=>{
+                if(moviesDropdown) {
+                    return <div>{moviesDropdown.map((options)=><MenuItem value={options.option} key={options.id}>{options.option}</MenuItem>)}</div>
+                }else if(tvDropdown){
+                    return <div>{tvDropdown.map((options)=><MenuItem value={options.option} key={options.id}>{options.option}</MenuItem>)}</div>
+                }
+            })()} */}
+            {props.tvDropdown.map((options)=><MenuItem value={options.option} key={options.id}>{options.option}</MenuItem>)}
             </Select>
         </FormControl>
         </div>
     )
 }
 
-export default SelectSearch
+export default SelectSearchTv
