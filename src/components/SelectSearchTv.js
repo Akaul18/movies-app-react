@@ -25,12 +25,13 @@ const SelectSearchTv = (props) => {
 
     const handleChange = event => {
         setAge(event.target.value);
+        props.getAllTv(event.target.value);
     };
 
     return (
         <div style={{textAlign:'center'}}>
 
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl className={classes.formControl}>
             <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
             Category
             </InputLabel>
@@ -41,14 +42,7 @@ const SelectSearchTv = (props) => {
             onChange={handleChange}
             labelWidth={labelWidth}
             >
-            {/* {(()=>{
-                if(moviesDropdown) {
-                    return <div>{moviesDropdown.map((options)=><MenuItem value={options.option} key={options.id}>{options.option}</MenuItem>)}</div>
-                }else if(tvDropdown){
-                    return <div>{tvDropdown.map((options)=><MenuItem value={options.option} key={options.id}>{options.option}</MenuItem>)}</div>
-                }
-            })()} */}
-            {props.tvDropdown.map((options)=><MenuItem value={options.option} key={options.id}>{options.option}</MenuItem>)}
+            {props.tvOptions.map((options)=><MenuItem value={options.option} key={options.id}>{options.option}</MenuItem>)}
             </Select>
         </FormControl>
         </div>

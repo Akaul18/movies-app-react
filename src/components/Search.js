@@ -1,31 +1,38 @@
-import React from 'react'
+import React,{Component} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField} from '@material-ui/core';
+import Axios from 'axios';
 
-const getStyles = makeStyles(theme => ({
-    textField: {
-        // display: 'flex',
-        // margin: theme.spacing.unit,
-        width: '60%',
-        margin:0
-        // margin: '4rem auto 0'
-      }
-    })
-)
-const Search = () => {
-    const classes = getStyles();
-    return (
-        // <div>
-            <TextField
-            id="outlined-search"
-            label="Search field"
-            type="search"
-            className={classes.textField}
-            margin="normal"
-            variant="outlined"
-            />
-        // </div>
-    )
+class Search extends Component{
+
+    state={
+        title:''
+    }
+
+    handleChange = (e) =>{
+        this.setState({title:e.target.value});
+        this.props.searchValue(e.target.value);
+    }
+    render(){
+        
+        return (
+                <TextField
+                id="outlined-search"
+                label="Search field"
+                type="search"
+                style={textField}
+                margin="normal"
+                variant="outlined"
+                value={this.state.title}
+                onChange={this.handleChange}
+                />
+        )           
+    }
+}
+
+const textField = {
+    width:'40%',
+    marginTop:'0.5rem'
 }
 
 export default Search;

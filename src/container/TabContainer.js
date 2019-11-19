@@ -10,8 +10,6 @@ import Box from '@material-ui/core/Box';
 import MoviesContainer from './MoviesContainer';
 import SearchContainer from './SearchContainer';
 import TvShowContainer from './TvShowContainer';
-// import SelectSearchMovies from '../components/SelectSearchMovies';
-import SelectSearchTv from '../components/SelectSearchTv';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TabContainer = (props) => {
-  const { moviesDropdown, tvDropdown } = props
+  const { moviesDropdown, tvDropdown, searchResults } = props
   // console.log(props.moviesDropdown);
     const classes = useStyles();
     const theme = useTheme();
@@ -98,11 +96,11 @@ const TabContainer = (props) => {
             <MoviesContainer moviesDropdown ={moviesDropdown} />
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            <SearchContainer />
+            <SearchContainer searchResults={searchResults} />
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            <SelectSearchTv tvDropdown ={tvDropdown} />
-            <TvShowContainer />
+            {/* <SelectSearchTv tvDropdown ={tvDropdown} /> */}
+            <TvShowContainer tvDropdown ={tvDropdown} />
           </TabPanel>
         </SwipeableViews>
       </div>

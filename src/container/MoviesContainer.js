@@ -24,14 +24,13 @@ class MoviesContainer extends Component{
                 <SelectSearchMovies selectOptions = {this.props.moviesDropdown} getAllMovies={this.getAllMovies} />
 
                 {this.state.movies.map(items => {
-                    const {title, release_date, popularity, overview, poster_path} = items
+                    const {id, title, release_date, popularity, overview, poster_path} = items
                     return(
-                        <Card style={{maxWidth: 1000,height: 400,margin: '2rem auto'}}>
+                        <Card key={id} style={{maxWidth: 1000,height: 400,margin: '2rem auto'}}>
                             <Grid container spacing={1} style={{minHeight:'100%'}}>
                                 <Grid item sm={3}>
                                     <CardMedia
                                     style={{width:'270px',height: '102%'}}
-                                    // image={require('../assets/myimage.jpg')}
                                     image={`http://image.tmdb.org/t/p/w185/${poster_path}`}
                                     title="Movie1"
                                     />
