@@ -6,9 +6,21 @@ class SearchContainer extends Component{
     render() {
         return (
             <div>
-                {this.props.searchResults.length <= 0 &&
+                {this.props.searchValue == 0 && this.props.searchResults.length <=0 &&
                     <Box display="flex" justifyContent="center" alignItems="center" style={emptySearch}>
                         <Typography variant="h4" gutterBottom>Please enter a search</Typography>
+                    </Box>
+                }
+
+                {this.props.searchValue.length >0 && this.props.total_results === 1 && 
+                    <Box display="flex" justifyContent="center" alignItems="center" style={emptySearch}>
+                        <Typography variant="h4" gutterBottom>Please initiate a search</Typography>
+                    </Box>
+                }
+
+                {this.props.total_results === 0 && this.props.searchValue > 0 &&
+                    <Box display="flex" justifyContent="center" alignItems="center" style={emptySearch}>
+                        <Typography variant="h4" gutterBottom>Sorry there were no results</Typography>
                     </Box>
                 }
                {this.props.searchResults.map(items=>{

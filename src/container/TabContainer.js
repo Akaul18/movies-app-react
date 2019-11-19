@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TabContainer = (props) => {
-  const { moviesDropdown, tvDropdown, searchResults } = props
+  const { moviesDropdown, tvDropdown, searchResults, searchValue, total_results } = props
   // console.log(props.moviesDropdown);
     const classes = useStyles();
     const theme = useTheme();
@@ -96,7 +96,7 @@ const TabContainer = (props) => {
             <MoviesContainer moviesDropdown ={moviesDropdown} />
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            <SearchContainer searchResults={searchResults} />
+            <SearchContainer searchResults={searchResults} searchValue={searchValue} total_results={total_results} />
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
             {/* <SelectSearchTv tvDropdown ={tvDropdown} /> */}

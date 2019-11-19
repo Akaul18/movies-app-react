@@ -61,7 +61,8 @@ class App extends Component{
           option:"top_rated"
         }
       ],
-      searchResults:[]
+      searchResults:[],
+      total_results:1
     }
     searchOptionSelected = searchTypeValue => {
       console.log(searchTypeValue)
@@ -84,7 +85,7 @@ class App extends Component{
           api_key: API_KEY,
           query: this.state.searchValue
         }
-      }).then((res) => {console.log(res.data.results); this.setState({searchResults: res.data.results})}).catch(err => console.log(err));
+      }).then((res) => {console.log(res); this.setState({searchResults: res.data.results,total_results:res.data.total_results})}).catch(err => console.log(err));
   }
 
 render(){
@@ -119,6 +120,8 @@ render(){
         moviesDropdown = {this.state.moviesDropdown}
         tvDropdown = {this.state.tvDropdown}
         searchResults = {this.state.searchResults}
+        searchValue = {this.state.searchValue}
+        total_results = {this.state.total_results}
         />
       </Container>
     </div>
