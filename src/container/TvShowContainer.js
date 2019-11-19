@@ -1,42 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, CardMedia, CardContent, Typography, Grid, Box } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
-// const card = {
-//     maxWidth: '1000px',
-//     height: '400px',
-//     margin: '2rem auto'
-// }
-// const media = {
-//     width:'300px',
-//     height: '200px',
-//     paddingTop: '56.25%' // 16:9
-// }
-const useStyles = makeStyles(theme => ({
-        card: {
-        maxWidth: 1000,
-        height: 400,
-        margin: '2rem auto'
-        },
-        media: {
-        width:'300px',
-        height: '102%'
-        // paddingTop: '56.25%', // 16:9
-    }
-}));
-
-const TvShowContainer = () => {
-    const classes = useStyles();
-    const theme = useTheme();
-    // render() {
+class TvShowContainer extends Component{
+    render() {
         return (
             <div>
-                <Card className={classes.card}>
+                <Card style={{maxWidth: 1000,height: 400,margin: '2rem auto'}}>
                     <Grid container spacing={1} style={{minHeight:'100%'}}>
                         <Grid item sm={3}>
                             <CardMedia
-                            className={classes.media}
-                            // image="./myimage.jpg"
+                            style={{width:'300px',height: '102%'}}
                             image={require('../assets/myimage.jpg')}
                             title="Movie1"
                             />
@@ -60,8 +34,7 @@ const TvShowContainer = () => {
                 </Card>
             </div>
         )
-    // }
-
+    }
 }
 
 export default TvShowContainer

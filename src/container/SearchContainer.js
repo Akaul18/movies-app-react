@@ -1,32 +1,16 @@
 import React, { Component } from 'react'
 import { Card, CardMedia, CardContent, Typography, Grid, Box} from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-    card: {
-    maxWidth: 1000,
-    height: 400,
-    margin: '2rem auto'
-    },
-    media: {
-    width:'300px',
-    height: '102%'
-    // paddingTop: '56.25%', // 16:9
-}
-}));
-
-const SearchContainer = () => {
-    const classes = useStyles();
-    const theme = useTheme();
-    // render() {
+class SearchContainer extends Component{
+    render() {
         return (
             <div>
-               <Card className={classes.card}>
+               <Card style={{maxWidth: 1000,height: 400,margin: '2rem auto'}}>
                     <Grid container spacing={1} style={{minHeight:'100%'}}>
                         <Grid item sm={3}>
                             <CardMedia
-                            className={classes.media}
-                            // image="./myimage.jpg"
+                            style={{width:'300px',height: '102%'}}
                             image={require('../assets/myimage.jpg')}
                             title="Movie1"
                             />
@@ -50,6 +34,7 @@ const SearchContainer = () => {
                 </Card>
             </div>
         )
+    }
 }
 
 export default SearchContainer

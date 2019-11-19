@@ -10,7 +10,7 @@ import Box from '@material-ui/core/Box';
 import MoviesContainer from './MoviesContainer';
 import SearchContainer from './SearchContainer';
 import TvShowContainer from './TvShowContainer';
-import SelectSearchMovies from '../components/SelectSearchMovies';
+// import SelectSearchMovies from '../components/SelectSearchMovies';
 import SelectSearchTv from '../components/SelectSearchTv';
 
 function TabPanel(props) {
@@ -57,9 +57,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-
-
 const TabContainer = (props) => {
   const { moviesDropdown, tvDropdown } = props
   // console.log(props.moviesDropdown);
@@ -97,8 +94,8 @@ const TabContainer = (props) => {
             onChangeIndex={handleChangeIndex}
           >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <SelectSearchMovies moviesDropdown ={moviesDropdown} />
-            <MoviesContainer />
+            {/* <SelectSearchMovies moviesDropdown ={moviesDropdown} /> */}
+            <MoviesContainer moviesDropdown ={moviesDropdown} />
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
             <SearchContainer />
