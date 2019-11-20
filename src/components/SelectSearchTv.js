@@ -1,20 +1,21 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { FormControl, Select, InputLabel, MenuItem } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
-const getStyles = makeStyles(theme => ({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 140,
-            maxWidth: '60%'
-        }
-    })
-)
+const useStyles = makeStyles(theme => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 140,
+        maxWidth: '60%'
+    }
+}));
 
-const SelectSearchTv = (props) => {
-    // const { moviesDropdown, tvDropdown } = props;
-    // console.log(props);
-    const classes = getStyles();
+const SelectSearchTv = ({getAllTv, tvOptions }) => {
+  
+    const classes = useStyles();
     const [age, setAge] = React.useState('');
 
     const inputLabel = React.useRef(null);
@@ -25,26 +26,25 @@ const SelectSearchTv = (props) => {
 
     const handleChange = event => {
         setAge(event.target.value);
-        props.getAllTv(event.target.value);
+        getAllTv(event.target.value);
     };
 
     return (
         <div style={{textAlign:'center'}}>
-
-        <FormControl className={classes.formControl}>
-            <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
-            Category
-            </InputLabel>
-            <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={age}
-            onChange={handleChange}
-            labelWidth={labelWidth}
-            >
-            {props.tvOptions.map((options)=><MenuItem value={options.option} key={options.id}>{options.option}</MenuItem>)}
-            </Select>
-        </FormControl>
+            <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
+                    Category
+                </InputLabel>
+                <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={age}
+                onChange={handleChange}
+                labelWidth={labelWidth}
+                >
+                {tvOptions.map((options)=><MenuItem value={options.option} key={options.id}>{options.option}</MenuItem>)}
+                </Select>
+            </FormControl>
         </div>
     )
 }

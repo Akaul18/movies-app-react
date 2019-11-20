@@ -56,7 +56,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TabContainer = (props) => {
-  const { moviesDropdown, tvDropdown, searchResults, searchValue, total_results } = props
+  // console.log(props)
+  const { moviesDropdown, tvDropdown, searchValue, total_results, searchResults } = props
   // console.log(props.moviesDropdown);
     const classes = useStyles();
     const theme = useTheme();
@@ -92,14 +93,23 @@ const TabContainer = (props) => {
             onChangeIndex={handleChangeIndex}
           >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            {/* <SelectSearchMovies moviesDropdown ={moviesDropdown} /> */}
-            <MoviesContainer moviesDropdown ={moviesDropdown} />
+            <MoviesContainer 
+            moviesDropdown ={moviesDropdown}
+            // resultsPerPage={resultsPerPage}
+            // paginate={paginate} 
+            />
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            <SearchContainer searchResults={searchResults} searchValue={searchValue} total_results={total_results} />
+            <SearchContainer 
+              // searchResults={currentResult}
+              searchResults={searchResults}
+              searchValue={searchValue} 
+              total_results={total_results}
+              // resultsPerPage={resultsPerPage}
+              // paginate={paginate}
+              />
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            {/* <SelectSearchTv tvDropdown ={tvDropdown} /> */}
             <TvShowContainer tvDropdown ={tvDropdown} />
           </TabPanel>
         </SwipeableViews>

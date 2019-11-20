@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import { Card, CardMedia, CardContent, Typography, Grid, Box } from '@material-ui/core';
 import SelectSearchMovies from '../components/SelectSearchMovies';
 import { getMovies } from '../services/api';
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 class MoviesContainer extends Component{
 

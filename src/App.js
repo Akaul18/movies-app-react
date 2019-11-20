@@ -62,17 +62,20 @@ class App extends Component{
         }
       ],
       searchResults:[],
-      total_results:1
+      total_results:-1,
+      currentPage:1,
+      resultsPerPage:10,
+      currentResult:[]
     }
     searchOptionSelected = searchTypeValue => {
-      console.log(searchTypeValue)
+      // console.log(searchTypeValue)
       this.setState({
         searchTypeValue:searchTypeValue
       })
     }
 
     searchValue = (searchValue) => {
-      console.log(searchValue);
+      // console.log(searchValue);
       this.setState({
         searchValue:searchValue
       });
@@ -80,27 +83,39 @@ class App extends Component{
 
   onSubmit = () => {
     // console.log('xyz');
-      Axios.get(`${BASE_URL_SEARCH}${this.state.searchTypeValue}`,{
+    this.setState({
+      total_results:1
+    });
+    
+    this.fetchSearchData = async ()=>{
+      this.indexOfLastResult = this.state.currentPage * this.state.resultsPerPage;
+      this.indexOfFirstResult = this.indexOfLastResult - this.state.resultsPerPage;
+
+      this.response = await Axios.get(`${BASE_URL_SEARCH}${this.state.searchTypeValue}`,{
         params:{
           api_key: API_KEY,
-          query: this.state.searchValue
+          query: this.state.searchValue,
+          // page: number
         }
-      }).then((res) => {console.log(res); this.setState({searchResults: res.data.results,total_results:res.data.total_results})}).catch(err => console.log(err));
+      });
+      this.setState({searchResults: this.response.data.results,total_results:this.response.data.total_results})
+      // this.setState({searchResults: this.response.data.results,total_results:this.response.data.total_results,currentResult:this.response.data.results.slice(this.indexOfFirstResult, this.indexOfLastResult)});
+    }
+    this.fetchSearchData();
   }
 
+  // paginate = (number) => {
+  //   this.setState({currentPage:number});
+  //   this.fetchSearchData(number);
+  // }
+
 render(){
-  // const classes = useStyles();
-  // console.log(this.state.selectSearchOptions);
   return (
     <div className="App">
       <header className="header">
         <h1>React Movies App</h1>
       </header>
-      <Grid container spacing={1} alignItems="center" style={{marginTop:'3.5rem', flexGrow:1}}>
-        {/* <Grid item sm={6} style={{textAlign:'right'}}>
-          <Search searchvalues={this.searchValues} />
-        </Grid> */}
-        
+      <Grid container spacing={1} alignItems="center" style={{marginTop:'3.5rem', flexGrow:1}}>      
         <Grid item sm={8}>
           <SelectSearch
             selectSearchOptions={this.state.selectSearchOptions}
@@ -108,7 +123,6 @@ render(){
             searchValue={this.searchValue}
            />
         </Grid>
-
         <Grid item sm={4}>
           <Button variant="contained" color="primary" onClick={this.onSubmit}>
           SEARCH
@@ -120,8 +134,11 @@ render(){
         moviesDropdown = {this.state.moviesDropdown}
         tvDropdown = {this.state.tvDropdown}
         searchResults = {this.state.searchResults}
+        // currentResult = {this.state.currentResult}
         searchValue = {this.state.searchValue}
         total_results = {this.state.total_results}
+        // resultsPerPage = {this.state.resultsPerPage}
+        // paginate={this.paginate}
         />
       </Container>
     </div>
